@@ -1,0 +1,112 @@
+<% layout('layouts/boilerplate') %>
+
+<main>
+    <div class="title-background">
+        <h1 class="title-sub-other">Get a Quote</h1>
+
+        <a href="/contact-us" class="title-button-link"><button class="title-button">Contact Us</button></a>
+    </div>
+
+<%- include('./partials/flash') %>
+
+    <div class="d-flex flex-lg-row flex-column justify-content-between">
+        <div class="col-lg-4 offset-md-1 background-image">
+            <img width="410" height="650" class="quote-image" src="img/quote/for-quote2.jpg" alt="stair">
+            <img src="img/quote/for-quote.jpg" class="float-image" alt="Floating Image" id="floatingImage">
+        </div>
+        <div class="col-lg-6 form-size" >
+            <h1 class="need-a-quote">Need A Quote?</h1>
+            <p class="paragraph">Fill out this form and we'll send you detailed quote for your requirements</p>
+        
+            <form action="/send-email" id="contactForm" method="POST" class="validated-form" novalidate>
+                <div class="card" >
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">Full Name</label>
+                                <input class="form-control form-input" type="text" id="name" name="name" required>
+                                <div class="valid-feedback">
+                                    Looks Good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter your name.
+                                  </div>
+                            </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control form-input" type="email" id="email" name="email" required>
+                            <div class="valid-feedback">
+                                Looks Good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide an email address.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label class="form-label" for="phoneNumber">Phone Number</label>
+                            <input class="form-control form-input" type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10,12}" required>
+                            <div class="valid-feedback">
+                                Looks Good!
+                                
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a 10-12 digit phone number.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label class="form-label" for="purpose">Subject</label>
+                            <input class="form-control form-input" type="text" id="purpose" name="purpose" required>
+                            <div class="valid-feedback">
+                                Looks Good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Please enter your purpose.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label class="form-label" for="service">Service</label>
+                            <select class="form-control form-input" name="service" id="service" required>
+                                <option value="" disabled selected>- Please choose an option -</option>
+                                <option value="Interlock">Interlock</option>
+                                <option value="Sod/Trees">Sod/Trees</option>
+                                <option value="Deck and Patio">Deck and Patio</option>
+                                <option value="Fence/PVC Fence">Fence/PVC Fence</option>
+                                <option value="Landscape Design">Landscape Design</option>
+                                <option value="Renovation">Renovation</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="valid-feedback">
+                                Looks Good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Please choose an option.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="mb-3">
+                            <label class="form-label" for="message">Your Message (optional)</label>
+                            <input class="form-control form-input" type="text" id="message" name="message">
+                        </div>
+                    </li>
+                </ul>
+                    <div class="card-body mb-3 d-grid gap-2 d-md-block">
+                        <button class="btn btn-outline-primary btn-lg " type="submit">Submit</button>
+                        <input class="btn btn-outline-danger btn-lg " type="reset" value="Reset" id="reset" name="reset">
+                  </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    
+    
+</main>
