@@ -1,11 +1,20 @@
 <% layout('layouts/boilerplate') %>
 
 <main>
+<% if (lang === 'en') { %>
     <div class="title-background">
         <h1 class="title-sub-other">Get a Quote</h1>
 
         <a href="/contact-us" class="title-button-link"><button class="title-button">Contact Us</button></a>
     </div>
+<% } %>
+<% if (lang === 'zh') { %>
+    <div class="title-background">
+        <h1 class="title-sub-other">获取报价</h1>
+
+        <a href="/contact-us" class="title-button-link"><button class="title-button">联系我们</button></a>
+    </div>
+<% } %>
 
 <%- include('./partials/flash') %>
 
@@ -14,6 +23,7 @@
             <img width="410" height="650" class="quote-image" src="img/quote/for-quote2.jpg" alt="stair">
             <img src="img/quote/for-quote.jpg" class="float-image" alt="Floating Image" id="floatingImage">
         </div>
+        <% if (lang === 'en') { %>
         <div class="col-lg-6 form-size" >
             <h1 class="need-a-quote">Need A Quote?</h1>
             <p class="paragraph">Fill out this form and we'll send you detailed quote for your requirements</p>
@@ -23,7 +33,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <div class="mb-3">
-                                <label class="form-label" for="name">Full Name</label>
+                                <label class="form-label" for="name">Name</label>
                                 <input class="form-control form-input" type="text" id="name" name="name" required>
                                 <div class="valid-feedback">
                                     Looks Good!
@@ -93,8 +103,8 @@
                     </li>
                     <li class="list-group-item">
                         <div class="mb-3">
-                            <label class="form-label" for="message">Your Message (optional)</label>
-                            <input class="form-control form-input" type="text" id="message" name="message">
+                            <label class="form-label" for="messages">Your Message (optional)</label>
+                            <input class="form-control form-input" type="text" id="messages" name="messages">
                         </div>
                     </li>
                 </ul>
@@ -104,9 +114,99 @@
                   </div>
                 </div>
             </form>
-
         </div>
-    </div>
-    
-    
+        <% } %> 
+        <% if (lang === 'zh') { %>
+            <div class="col-lg-6 form-size" >
+                <h1 class="need-a-quote">需要报价吗?</h1>
+                <p class="paragraph">请填写此表格，我们将为您提供详细的报价</p>
+            
+                <form action="/send-email" id="contactForm" method="POST" class="validated-form" novalidate>
+                    <div class="card" >
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="mb-3">
+                                    <label class="form-label" for="name">姓名</label>
+                                    <input class="form-control form-input" type="text" id="name" name="name" required>
+                                    <div class="valid-feedback">
+                                        Looks Good!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        我们该怎么称呼您呢？
+                                      </div>
+                                </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="mb-3">
+                                <label class="form-label" for="email">邮箱地址</label>
+                                <input class="form-control form-input" type="email" id="email" name="email" required>
+                                <div class="valid-feedback">
+                                    Looks Good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    我们需要您的邮箱地址以便联系您！
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="mb-3">
+                                <label class="form-label" for="phoneNumber">电话号码</label>
+                                <input class="form-control form-input" type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10,12}" required>
+                                <div class="valid-feedback">
+                                    Looks Good!
+                                    
+                                </div>
+                                <div class="invalid-feedback">
+                                    我们需要您的电话号码以便联系您！(9到11位数字)
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="mb-3">
+                                <label class="form-label" for="purpose">目的/要求</label>
+                                <input class="form-control form-input" type="text" id="purpose" name="purpose" required>
+                                <div class="valid-feedback">
+                                    Looks Good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    请输入您想询问的问题
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="mb-3">
+                                <label class="form-label" for="service">服务列表</label>
+                                <select class="form-control form-input" name="service" id="service" required>
+                                    <option value="" disabled selected>- 请选择您所需的服务 -</option>
+                                    <option value="Interlock">车道铺砖</option>
+                                    <option value="Deck and Patio">Deck</option>
+                                    <option value="Fence/PVC Fence">Fence/PVC Fence</option>
+                                    <option value="Landscape Design">种树，铺草坪</option>
+                                    <option value="Renovation">室内翻新，油漆</option>
+                                    <option value="Other">其他</option>
+                                </select>
+                                <div class="valid-feedback">
+                                    Looks Good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    请选择您所需的服务.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="mb-3">
+                                <label class="form-label" for="messages">若有需要，可以在下面留下您具体的要求</label>
+                                <input class="form-control form-input" type="text" id="messages" name="messages">
+                            </div>
+                        </li>
+                    </ul>
+                        <div class="card-body mb-3 d-grid gap-2 d-md-block">
+                            <button class="btn btn-outline-primary btn-lg " type="submit">确认</button>
+                            <button class="btn btn-outline-danger btn-lg " type="reset">重置</button>
+                      </div>
+                    </div>
+                </form>
+            </div>
+            <% } %> 
+    </div>    
 </main>

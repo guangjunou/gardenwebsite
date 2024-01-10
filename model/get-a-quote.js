@@ -3,15 +3,20 @@ const Joi = require('joi');
 
 const formSchema = Joi.object({
     name: Joi.string().required(),
-    email: Joi.string().required(),
-    phoneNumber: Joi.string().required().min(0).max(11),
+    email: Joi.string().required()
+        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }),
+    phoneNumber: Joi.number().required(),
     purpose: Joi.string().required(),
-    service: Joi.string().required()
+    service: Joi.string().required(),
+    messages: Joi.any()
 });
 
+
+
+
 module.exports.createEmail = async (req, res, next) => {
-    // const formData = req.body
-    const { name, email, message, phoneNumber, service, purpose } = req.body;
+    const { name, email, messages, phoneNumber, service, purpose } = req.body;
+    const formData = req.body
 
     const validationResult = formSchema.validate(formData);
     if (validationResult.error) {
@@ -32,10 +37,8 @@ module.exports.createEmail = async (req, res, next) => {
             from: 'ougaungjun@gmail.com',    // Replace with your Gmail email address
             to: 'ougaungjun@gmail.com',    // Replace with your actual email address
             subject: 'New Quote',
-            text: `Name: ${name}\nEmail: ${email}\nPhone Number: ${phoneNumber}\nSubject: ${purpose}\nService: ${service}\nMessage: ${message}`
+            text: `Name: ${name}\nEmail: ${email}\nPhone Number: ${phoneNumber}\nSubject: ${purpose}\nService: ${service}\nMessage: ${messages}`
         };
-
-
 
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
@@ -49,5 +52,9 @@ module.exports.createEmail = async (req, res, next) => {
  
     
     req.flash("success", "Your message sent successfully!!");
-    res.redirect('/get-a-quote')
+    if (lang === 'en') {
+    res.redirect('/get-a-quote', { lang: 'en'})
+    } else if (lang === 'zh') {
+    res.redirect('/get-a-quote', { lang: 'zh'})
+    }
 }

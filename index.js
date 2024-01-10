@@ -1,8 +1,6 @@
 // if(process.env.NODE_ENV !== "production") {
 //     require('dotenv').config();
 //   }
-
-  
 const express = require('express');
 const path = require('path');
 const ejsMate = require('ejs-mate');
@@ -10,7 +8,7 @@ const bodyParser = require('body-parser');
 // const nodemailer = require('nodemailer');
 const flash = require('connect-flash');
 const session = require('express-session');
-const joi = require('joi');
+// const joi = require('joi');
 
 const app = express();
 
@@ -41,27 +39,50 @@ app.use((req, res, next) => {
     next();
 })
 
-const getaquote = require('../garden/model/get-a-quote');
+app.use(bodyParser.json());
+
+const ExpressError = require('./model/ExpressError');
+const { storeReturnTo } = require('./model/middleware');
+
+const getaquote = require('./model/get-a-quote');
 
 app.get('/', (req, res) => {
-    res.render('home')
+    res.render('home', { lang: 'en' })
+  });
+  app.get('/chinese', (req, res) => {
+    res.render('home', { lang: 'zh' })
   });
 
 app.get('/about-us', (req, res) => {
-    res.render('aboutus')
+    res.render('aboutus', { lang: 'en' })
   });
 
 app.get('/contact-us', (req, res) => {
-    res.render('contactus')
+    res.render('contactus', { lang: 'en' })
   });
 
 app.get('/get-a-quote', (req, res) => {
-    res.render('getaquote')
+  console.log(req.acceptsLanguages('en-US'));
+  //get the lang from the req
+  //if lang === 'en' {
+  // redirect 
+    res.render('getaquote', { lang: 'en' })
+  });
+app.get('/get-a-quotechinese', (req, res) => {
+    res.render('getaquote', { lang: 'zh' })
   });
 app.post('/send-email', getaquote.createEmail);
 
+
+
+app.all('*', (req, res, next) => {
+  next(new ExpressError('Page Not Found', 404))
+});
+
 app.use((err, req, res, next) => {
-    res.send('Something went wrong!')
+  const { statusCode = 500 } = err;
+  if(!err.message) err.message = 'Oh No, Something Went Wrong!';
+  res.status(statusCode).render('error', { err })
 })
 
 app.listen(3000, () => {

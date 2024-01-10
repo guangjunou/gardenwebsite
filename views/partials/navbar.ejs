@@ -1,50 +1,101 @@
 <nav class="navbar sticky-top  navbar-expand-lg navbar-dark">
-  <div class="container-fluid">
-    <div class="navbar-brand float-md-left mb-0" href="#">
-      <img src="img/icon/TitleLogo.png" alt="Bootstrap" width="170" height="75">
-    </div>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse nav-masthead justify-content-center" id="navbarNavAltMarkup">
-      <div class="navbar-nav me-auto">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="/" >Home</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/about-us">About Us</a>
-              </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Services
-                  </a>
-                      <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Interlock</a></li>
-                          <li><a class="dropdown-item" href="#">Sod/Trees</a></li>
-                          <li><a class="dropdown-item" href="#">Deck and Patio</a></li>
-                          <li><a class="dropdown-item" href="#">Fence/PVC Fence</a></li>
-                          <li><a class="dropdown-item" href="#">Landscape Design</a></li>
-                          <li><a class="dropdown-item" href="#">Renovation</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">More</a></li>
-                      </ul>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/contact-us">Contact Us</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/get-a-quote">Get a Quote</a>
-              </li>
-          </ul>
+    <div class="container-fluid">
+      <div class="navbar-brand float-md-left mb-0" href="#">
+        <img src="img/icon/TitleLogo.png" alt="Bootstrap" width="170" height="75">
       </div>
-      <div class="navbar-nav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                  <a class="nav-link" href="facetime://6478222862">Call us: 647-882-2862</a>
-              </li>
-          </ul>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse nav-masthead justify-content-center" id="navbarNav">
+        <div class="navbar-nav me-auto">
+            <% if (lang === 'en') { %>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/" >Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about-us">About Us</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Services
+                    </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Interlock</a></li>
+                            <li><a class="dropdown-item" href="#">Sod/Trees</a></li>
+                            <li><a class="dropdown-item" href="#">Deck and Patio</a></li>
+                            <li><a class="dropdown-item" href="#">Fence/PVC Fence</a></li>
+                            <li><a class="dropdown-item" href="#">Landscape Design</a></li>
+                            <li><a class="dropdown-item" href="#">Renovation</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">More</a></li>
+                        </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact-us">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/get-a-quote">Get a Quote</a>
+                </li>
+            </ul>
+            <% } %>
+            <% if (lang === 'zh') { %>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/chinese">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about-us">关于我们</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">服务列表
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">车道铺砖</a></li>
+                            <li><a class="dropdown-item" href="#">Deck</a></li>
+                            <li><a class="dropdown-item" href="#">Fence/PVC Fence</a></li>
+                            <li><a class="dropdown-item" href="#">种树，铺草坪</a></li>
+                            <li><a class="dropdown-item" href="#">室内翻新，油漆</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">更多</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact-us">联系我们</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/get-a-quotechinese">获取报价</a>
+                    </li>
+                </ul>
+            <% } %>
+        </div>
+        <div class="navbar-nav">
+            <% if (lang === 'en') { %>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item d-flex ">
+                    <a class="nav-link active" href="/">English</a>
+                    <a class="nav-link text-secondary" href="/chinese">中文</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="facetime://6478222862">Call us: 647-882-2862</a>
+                </li>
+            </ul>
+            <% } %>
+            <% if (lang === 'zh') { %>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item d-flex ">
+                        <a class="nav-link text-secondary" href="/">English</a>
+                        <a class="nav-link active" href="/chinese">中文</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="facetime://6478222862">联系电话: 647-882-2862</a>
+                    </li>
+                </ul>
+            <% } %>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
+  
+  
+  

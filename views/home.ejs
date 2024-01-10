@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate') %>
+    <% if (lang === 'en') { %>
         <main>
             <div class="title-background">
                 <h1 class="title">A-Beauty 
@@ -18,3 +19,26 @@
         <h1>dsfjsldkfjsdklfjasdlkfjadsklf</h1>
     </div>
 
+    <% } %>
+
+    <% if (lang === 'zh') { %>
+        <main>
+            <div class="title-background">
+                <h1 class="title">A-Beauty 
+                    <span><img class="tree" src="img/icon/TreeLogo.png"></span> 
+                    <span class="text">Home</span>
+                </h1>
+                <h3 class="fw-light sub-title ">Construction Inc.</h3>
+                <h3 class="fw-bold sub-title "> 美景家园建设有限公司</h3>
+                
+            </div>
+            
+        </main>
+        
+
+    <div>
+        <p>时代峰峻快递师傅的街道上</p>
+        <h1>第三方</h1>
+    </div>
+
+    <% } %>
