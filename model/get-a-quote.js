@@ -1,5 +1,22 @@
 const nodemailer = require('nodemailer');
 const Joi = require('joi');
+const i18n = require('i18n');
+const express = require('express');
+const path = require('path');
+
+const app = express();
+
+i18n.configure({
+    locales: ['en', 'zh'],
+    directory: __dirname + '/locales',
+    defaultLocale: 'en',
+    cookie: 'language',
+    queryParameter: 'lang',
+    autoReload: true,
+    updateFiles: false,
+});
+
+app.use(i18n.init);
 
 const formSchema = Joi.object({
     name: Joi.string().required(),
@@ -10,7 +27,6 @@ const formSchema = Joi.object({
     service: Joi.string().required(),
     messages: Joi.any()
 });
-
 
 
 
@@ -52,9 +68,6 @@ module.exports.createEmail = async (req, res, next) => {
  
     
     req.flash("success", "Your message sent successfully!!");
-    if (lang === 'en') {
-    res.redirect('/get-a-quote', { lang: 'en'})
-    } else if (lang === 'zh') {
-    res.redirect('/get-a-quote', { lang: 'zh'})
-    }
+
+    res.redirect('back')
 }

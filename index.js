@@ -20,6 +20,7 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+
 const sessionConfig = {
     secret: 'thisshouldbebettersecret',
     resave: false,
@@ -41,10 +42,12 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-const ExpressError = require('./model/ExpressError');
-const { storeReturnTo } = require('./model/middleware');
 
+const ExpressError = require('./model/ExpressError');
+const middleware = require('./model/middleware')
 const getaquote = require('./model/get-a-quote');
+
+
 
 app.get('/', (req, res) => {
     res.render('home', { lang: 'en' })
@@ -60,18 +63,17 @@ app.get('/about-us', (req, res) => {
 app.get('/contact-us', (req, res) => {
     res.render('contactus', { lang: 'en' })
   });
+app.get('/contact-uschinese', (req, res) => {
+    res.render('contactus', { lang: 'zh' })
+  });
 
 app.get('/get-a-quote', (req, res) => {
-  console.log(req.acceptsLanguages('en-US'));
-  //get the lang from the req
-  //if lang === 'en' {
-  // redirect 
-    res.render('getaquote', { lang: 'en' })
+  res.render('getaquote', { lang: 'en' })
   });
 app.get('/get-a-quotechinese', (req, res) => {
-    res.render('getaquote', { lang: 'zh' })
-  });
-app.post('/send-email', getaquote.createEmail);
+  res.render('getaquote', { lang: 'zh' })
+});
+  app.post('/send-email', getaquote.createEmail);
 
 
 
